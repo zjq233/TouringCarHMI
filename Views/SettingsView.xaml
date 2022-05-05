@@ -1,0 +1,132 @@
+﻿<UserControl x:Class="TouringCarHMI.Views.SettingsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TouringCarHMI.Views"
+             mc:Ignorable="d" Foreground="White" FontSize="12"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <Style TargetType="ComboBox">
+            <Setter Property="Margin" Value="0,0,20,0"/>
+        </Style>
+        <Style TargetType="Button" x:Key="buttonStyle">
+            <Setter Property="Height" Value="35"/>
+            <Setter Property="Margin" Value="0,10"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="#aaf7f9fa" CornerRadius="15" Name="root">
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="root" Property="Background" Value="#77f7f9fa"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <Grid Margin="50,30,50,20">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Border Height="28" CornerRadius="10" Background="#22ffffff">
+                <TextBlock Text="时间设置" FontSize="14" VerticalAlignment="Center"
+                           HorizontalAlignment="Center"/>
+            </Border>
+            <DockPanel Grid.Row="1" Grid.Column="0" 
+                        VerticalAlignment="Center">
+                <TextBlock Text="日期" VerticalAlignment="Center"/>
+                <DatePicker SelectedDate="2022-04-24" BorderThickness="0" 
+                            Margin="10,0,0,0"/>
+            </DockPanel>
+            <TextBlock Grid.Row="1" Grid.Column="1" Margin="30,0" VerticalAlignment="Center">
+                <Run Text="时间    "/>
+                <Run Text="20"/>
+                <Run Text=":"/>
+                <Run Text="00"/>
+                <Run Text=":"/>
+                <Run Text="00"/>
+            </TextBlock>
+            <Button Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" Content="设置" 
+                    Margin="170,0,0,0"/>
+            <Border Height="28" CornerRadius="10" Background="#22ffffff" Grid.Row="3">
+                <TextBlock Text="设备安装配置" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            </Border>
+            <TextBlock  Grid.Row="4" Text="电池类型选择" VerticalAlignment="Center"/>
+            <ComboBox Grid.Row="4" SelectedIndex="0" VerticalAlignment="Center" HorizontalAlignment="Right" 
+                          MinWidth="100">
+                <ComboBoxItem Content=" 锂电"/>
+            </ComboBox>
+            <TextBlock  Grid.Row="5" Text="污水传感器安装" VerticalAlignment="Center"/>
+            <ComboBox Grid.Row="5" SelectedIndex="0" VerticalAlignment="Center" HorizontalAlignment="Right" 
+                          MinWidth="100">
+                <ComboBoxItem Content=" "/>
+            </ComboBox>
+            <TextBlock  Grid.Row="6" Text="GSM/WIFI模块选择" VerticalAlignment="Center"/>
+            <ComboBox Grid.Row="6" SelectedIndex="0" VerticalAlignment="Center" HorizontalAlignment="Right" 
+                          MinWidth="100">
+                <ComboBoxItem Content="GSM"/>
+                <ComboBoxItem Content="WIFI"/>
+            </ComboBox>
+            <TextBlock  Grid.Row="7" Text="水位传感器安装" VerticalAlignment="Center"/>
+            <ComboBox Grid.Row="7" SelectedIndex="0" VerticalAlignment="Center" HorizontalAlignment="Right" 
+                          MinWidth="100">
+                <ComboBoxItem Content="竖装"/>
+                <ComboBoxItem Content="倒装"/>
+            </ComboBox>
+            <!--第二列开始-->
+            <TextBlock  Grid.Row="4"  Grid.Column="1" Text="电压低于11V关闭总开关" VerticalAlignment="Center"/>
+            <ComboBox Grid.Row="4" Grid.Column="1"  SelectedIndex="0" VerticalAlignment="Center" HorizontalAlignment="Right" 
+                          MinWidth="80">
+                <ComboBoxItem Content="是"/>
+                <ComboBoxItem Content="否"/>
+            </ComboBox>
+            <TextBlock  Grid.Row="5"  Grid.Column="1" Text="电压基准默认值" VerticalAlignment="Center"/>
+            <ComboBox Grid.Row="5" Grid.Column="1"  SelectedIndex="0" VerticalAlignment="Center" HorizontalAlignment="Right" 
+                          MinWidth="80">
+                <ComboBoxItem Content=""/>
+                <ComboBoxItem Content=""/>
+            </ComboBox>
+            <TextBlock  Grid.Row="6"  Grid.Column="1" Text="副电池电压" VerticalAlignment="Center"/>
+            <ComboBox Grid.Row="6" Grid.Column="1"  SelectedIndex="0" VerticalAlignment="Center" HorizontalAlignment="Right" 
+                          MinWidth="80">
+                <ComboBoxItem Content="12.4V"/>
+                <ComboBoxItem Content="24V"/>
+            </ComboBox>
+            <TextBlock  Grid.Row="7"  Grid.Column="1" Text="交流电压" VerticalAlignment="Center"/>
+            <ComboBox Grid.Row="7" Grid.Column="1"  SelectedIndex="0" VerticalAlignment="Center" HorizontalAlignment="Right" 
+                          MinWidth="80">
+                <ComboBoxItem Content="220V"/>
+                <ComboBoxItem Content="240V"/>
+            </ComboBox>
+        </Grid>
+        <Button Grid.Column="1" Content="WIFI模块复位" VerticalAlignment="Top" 
+                Margin="10,0" Style="{StaticResource buttonStyle}"/>
+        <StackPanel Grid.Column="1" VerticalAlignment="Bottom">
+            <Button Content="恢复出厂设置" Style="{StaticResource buttonStyle}"/>
+            <Button Content="修改密码" Style="{StaticResource buttonStyle}"/>
+            <Button Content="用户管理" Style="{StaticResource buttonStyle}"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

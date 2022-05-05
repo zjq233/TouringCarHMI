@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <AssemblyName>TouringCarHMI</AssemblyName>
+    <StartupObject>TouringCarHMI.App</StartupObject>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="Assets\Fonts\iconfont.ttf" />
+    <None Remove="Assets\Images\2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="NModbus" Version="3.0.72" />
+    <PackageReference Include="Prism.DryIoc" Version="8.0.0.1909" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Fonts\iconfont.ttf" />
+    <Resource Include="Assets\Images\2.jpg" />
+  </ItemGroup>
+</Project>

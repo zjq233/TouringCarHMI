@@ -1,0 +1,98 @@
+﻿<Window x:Class="TouringCarHMI.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:prism="http://prismlibrary.com/" 
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:ext="clr-namespace:TouringCarHMI.Extensions"
+        prism:ViewModelLocator.AutoWireViewModel="True"
+        Title="{Binding Title}" Height="450" Width="800" 
+        Background="#FF07122D"  WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <Style TargetType="RadioButton" x:Key="PageButtonStyle">
+            <Setter Property="GroupName" Value="Menu"/>
+            <Setter Property="Width" Value="80"/>
+            <Setter Property="Margin" Value="10,0"/>
+            <Setter Property="Foreground" Value="#7FFFFFFF"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="RadioButton">
+                        <Grid Background="Transparent">
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Text="{TemplateBinding Tag}" FontFamily="/Assets/Fonts/#iconfont"
+                                       Foreground="{TemplateBinding Foreground}"
+                                       VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="35"/>
+                            <TextBlock Text="{TemplateBinding Content}" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                       Margin="0,5" Foreground="White" FontSize="13"/>
+                            <Border Height="3" Background="White" Grid.Row="1" VerticalAlignment="Bottom"
+                                    Visibility="Collapsed" Name="state_flag"/>
+                        </Grid>
+                        
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter Property="Visibility" Value="Visible" TargetName="state_flag"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsChecked" Value="True">
+                    <Setter Property="Foreground" Value="#FFAACA22"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <Grid x:Name="ColorZone">
+        <Grid.Background>
+            <RadialGradientBrush Center="0.5,1" GradientOrigin="0.5,1" RadiusY="1" RadiusX="0.6">
+                <GradientStop Color="#00000000" Offset="1"/>
+                <GradientStop Color="#77ffffff" Offset="0"/>
+            </RadialGradientBrush>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="70"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="2" VerticalAlignment="Top" Margin="0,45,0,0" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="40"/>
+                <ColumnDefinition Width="40"/>
+                <ColumnDefinition />
+                <ColumnDefinition Width="40"/>
+                <ColumnDefinition Width="40"/>
+            </Grid.ColumnDefinitions>
+            <Path Data="M0,40 40 40 40 0" Fill="#4C1759B3" Grid.Column="1"/>
+            <Border Background="#4C1759B3" Grid.Column="2"/>
+            <Path Data="M0,0 40 40 0 40" Fill="#4C1759B3" Grid.Column="3"/>
+        </Grid>
+        <ListBox x:Name="menuBar"   Grid.Row="1" Background="Transparent" 
+                            ItemsSource="{Binding MenuBars}" BorderThickness="0" Padding="0" >
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="SelectionChanged">
+                    <i:InvokeCommandAction 
+                                        Command="{Binding  NavigateCommand}"
+                                         CommandParameter="{Binding ElementName=menuBar,Path=SelectedItem}"  />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel IsItemsHost="True"  HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <RadioButton  Content="{Binding Title}" Tag="{Binding Tag}" 
+                                   Style="{StaticResource PageButtonStyle}">
+                        <RadioButton.IsChecked>
+                            <Binding Path="IsSelected" RelativeSource="{RelativeSource AncestorType=ListBoxItem}" Mode="TwoWay"/>
+                        </RadioButton.IsChecked>
+                    </RadioButton>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <ContentControl prism:RegionManager.RegionName="{x:Static ext:PrismManager.MainViewRegionName}"/>
+    </Grid>
+</Window>

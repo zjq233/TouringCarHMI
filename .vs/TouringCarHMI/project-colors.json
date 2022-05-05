@@ -1,0 +1,21 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "6dd744f2-dac6-4192-93f1-68a78f893515": {
+      "ProjectGuid": "6dd744f2-dac6-4192-93f1-68a78f893515",
+      "DisplayName": "TouringCarHMI",
+      "ColorIndex": 0
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "杂项文件",
+      "ColorIndex": -1
+    },
+    "baa8b3dd-3ad9-4029-9f28-1600c806385a": {
+      "ProjectGuid": "baa8b3dd-3ad9-4029-9f28-1600c806385a",
+      "DisplayName": "MDBCommunication",
+      "ColorIndex": 1
+    }
+  },
+  "NextColorIndex": 2
+}
